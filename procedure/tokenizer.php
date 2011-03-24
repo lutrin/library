@@ -9,12 +9,12 @@ class Tokenizer {
   /****************************************************************************/
   public static function exists( $type, $token ) {
     $tokenType = "token_$type";
-    return ( !isset( $_SESSION[$tokenType], $token ) || ( $_SESSION[$tokenType] != $token ) );
+    return isset( $_SESSION[$tokenType] ) && ( $_SESSION[$tokenType] == $token );
   }
 
   /****************************************************************************/
   public static function validate( $type, $token ) {
-    if( self::exists( $type, $token ) ) {
+    if( !self::exists( $type, $token ) ) {
       print "Accès dénié";
       exit;
     }
