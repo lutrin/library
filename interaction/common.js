@@ -178,6 +178,10 @@ var _c = {
       options["url"] = fi + ".html";
       options["contentType"] = "text/html";
       options["dataType"] = "html";
+    } else if( go.fo == "transformation" ) {
+      options["url"] = fi + ".xsl";
+      options["contentType"] = "text/xsl";
+      options["dataType"] = "xsl";
     } else if( go.fo == "procedure" ) {
       options["url"] = go.u + go.fo + "/controller.php";
       options["data"] = options["data"] || {};
