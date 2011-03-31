@@ -197,10 +197,7 @@ var _c = {
           options["dataType"] = "html";
         }
       }
-      options["error"] = function( XMLHttpRequest, textStatus, errorThrown ) {
-        console.log( errorThrown );
-        alert( "Erreur" );
-      };
+      options["error"] = _c.showAjaxError;
     } else if( go.fo == "text" ) {
       fi = "procedure/" + go.n;
       options["url"] = fi + ".php";
@@ -223,10 +220,20 @@ var _c = {
   },
   
   /****************************************************************************/
+  showAjaxError: function( XMLHttpRequest, textStatus, errorThrown ) {
+    console.log( errorThrown );
+    alert( "Erreur" );
+  },
+
+  /****************************************************************************/
   callAjax: function( getList, c ) {
     var gets = _c.makeArray( getList ),
         last = gets.length - 1,
         i = 0;
+    if( !gets.length ) {
+      c( false );
+      return false;
+    }
     return this.eachItem( gets, function( getItem ) {
       var ps = getItem.params || null,
           u = getItem.url || "",
