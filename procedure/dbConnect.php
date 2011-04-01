@@ -204,11 +204,11 @@ class DB {
     $setList = array();
     if( isset( $params["noquote"] ) && $params["noquote"] ) {
       foreach( $params["set"] as $field => $value ) {
-        $setList[] = "$field=$value";
+        $setList[] = "$field=" . this::mysql_prep( $value );
       }
     } else {
       foreach( $params["set"] as $field => $value ) {
-        $setList[] = "$field='$value'";
+        $setList[] = "$field='" . self::mysql_prep( $value ) . "'";
       }
     }
 
