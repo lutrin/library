@@ -181,7 +181,7 @@ var _c = {
     } else if( go.fo == "transformation" ) {
       options["url"] = fi + ".xsl";
       options["contentType"] = "text/xsl";
-      options["dataType"] = "xsl";
+      options["dataType"] = "text";
     } else if( go.fo == "procedure" ) {
       options["url"] = go.u + go.fo + "/controller.php";
       options["data"] = options["data"] || {};
@@ -197,7 +197,6 @@ var _c = {
           options["dataType"] = "html";
         }
       }
-      options["error"] = _c.showAjaxError;
     } else if( go.fo == "text" ) {
       fi = "procedure/" + go.n;
       options["url"] = fi + ".php";
@@ -211,7 +210,15 @@ var _c = {
     } else {
       options["url"] = fi + ".js";
       options["contentType"] = "application/json";
-      options["dataType"] = "json";
+      if( go.fo == "data" ) {
+        options["dataType"] = "json";
+      } else {
+        options["dataType"] = "text";
+        options["success"] = function( result ) {
+          var json = eval( "(" + result + ")" );
+          go.c( json );
+        }
+      }
     }
 
     $.ajax( options );
@@ -242,6 +249,7 @@ var _c = {
           t = getItem.dataType,
           m = getItem.method || "GET",
           lastGet;
+
       if( ( f == "template" || f == "data" || f == "interaction" || f == "transformation" ) &&
             _c.ajaxList[f] &&
             _c.ajaxList[f][n] ) {
@@ -249,21 +257,23 @@ var _c = {
           lastGet = gets[last];
           c( _c.ajaxList[lastGet.folder][lastGet.name] );
         }
-        return false;
+        return true;
       } else {
-        return _c.callGet( {
+        _c.callGet( {
           fo: f, n: n, ps: ps, u: u, t: t, m: m,
           c: function( aItem ) {
+/*console.log( aItem );*/
             if( !_c.ajaxList[f] ) {
               _c.ajaxList[f] = {};
             }
             _c.ajaxList[f][n] = aItem;
-console.log( i ); 
             if( ( ++i ) > last ) {
               lastGet = gets[last];
+if( !c ) {
+  console.log( aItem );
+}
               c( _c.ajaxList[lastGet.folder][lastGet.name] );
             }
-            return false;
           }
         } );
       }
@@ -328,6 +338,10 @@ $.ajaxSetup( {
   scriptCharset: "UTF-8",
   async: true,
   cache: true,
-  global: true
+  global: true,
+  error: _c.showAjaxError,
+  complete: function( a ) {
+    /*console.log( a );*/
+  }
 } );
 
