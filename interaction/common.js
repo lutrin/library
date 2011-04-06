@@ -216,7 +216,7 @@ var _c = {
 
     $.ajax( options );
 
-    return false;
+    //return false;
   },
   
   /****************************************************************************/
@@ -235,14 +235,14 @@ var _c = {
       return false;
     }
     return this.eachItem( gets, function( getItem ) {
-      var ps = getItem.params || null,
+      var ps = ( getItem.params ) || null,
           u = getItem.url || "",
           f = getItem.folder,
           n = getItem.name,
           t = getItem.dataType,
           m = getItem.method || "GET",
           lastGet;
-      if( ( f == "template" || f == "data" || f == "interaction" ) &&
+      if( ( f == "template" || f == "data" || f == "interaction" || f == "transformation" ) &&
             _c.ajaxList[f] &&
             _c.ajaxList[f][n] ) {
         if( ( ++i ) > last ) {
@@ -258,6 +258,7 @@ var _c = {
               _c.ajaxList[f] = {};
             }
             _c.ajaxList[f][n] = aItem;
+console.log( i ); 
             if( ( ++i ) > last ) {
               lastGet = gets[last];
               c( _c.ajaxList[lastGet.folder][lastGet.name] );
