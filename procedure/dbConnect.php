@@ -145,7 +145,9 @@ class DB {
       # with quote
       } else {
         if( isset( $params["values"] ) ) {
-          $valuesList = array( "'" . join( "','", $params["values"] ) . "'" );
+          $valuesList = array(
+            "'" . join( "','", array_map( self::mysql_prep, $params["values"] ) ) . "'"
+          );
         } else {
           $valuesList = array_map( function( $row ) {
             return "'" . join( "','", $row ) . "'";
@@ -204,7 +206,7 @@ class DB {
     $setList = array();
     if( isset( $params["noquote"] ) && $params["noquote"] ) {
       foreach( $params["set"] as $field => $value ) {
-        $setList[] = "$field=" . this::mysql_prep( $value );
+        $setList[] = "$field=$value";
       }
     } else {
       foreach( $params["set"] as $field => $value ) {
