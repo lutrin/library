@@ -167,7 +167,7 @@ class DB {
         return array_map( function( $value ) use( $sql ) {
 
           # execute query
-          db::runSql( "$sql($value);" );
+          DB::runSql( "$sql($value);" );
           if( mysql_affected_rows() ) {
             return mysql_insert_id();
           }
