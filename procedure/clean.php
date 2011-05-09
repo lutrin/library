@@ -1,6 +1,6 @@
 <?php
 function cleanAll() {
-  return ( clearCache() && compressFile() && mergeFile() )? "Ménage réussi": "Ménage échoué";
+  return ( clearCache() && /*compressFile() && */mergeFile() )? "Ménage réussi": "Ménage échoué";
 }
 
 /******************************************************************************/
