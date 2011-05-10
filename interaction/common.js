@@ -272,7 +272,9 @@ var _c = {
 if( !c ) {
   console.log( aItem );
 }
-              c( _c.ajaxList[lastGet.folder][lastGet.name] );
+              if( c ) {
+                c( _c.ajaxList[lastGet.folder][lastGet.name] );
+              }
             }
           }
         } );
@@ -329,6 +331,11 @@ if( !c ) {
   /****************************************************************************/
   clearLocalStorage: function() {
     window.localStorage.clear();
+  },
+
+  /****************************************************************************/
+  setAccountStorage: function( n, v ) {
+    _c.callAjax( [ { folder: "procedure", name: "setAccountStorage", params: { "name": n, "value": v } } ], false );
   }
 };
 
