@@ -54,21 +54,6 @@ class typeValidator {
   }
 
   /****************************************************************************/
-  public static function isSessionConnected() {
-    return false;
-    /*if( isset( $_SESSION["connected"] )? $_SESSION["connected"]: false ) {
-      setcookie( "connected", true, time() + 3600 );
-      return true;
-    }
-    if( isset( $_COOKIE["connected"] )? $_COOKIE["connected"]: false ) {
-      $_SESSION["connected"] = true;
-      setcookie( "connected", true, time() + 3600 );
-      return true;
-    }
-    return false;*/
-  }
-
-  /****************************************************************************/
   public static function isEmpty( $str ) {
     return $str === "";
   }
