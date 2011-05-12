@@ -257,12 +257,12 @@ var _c = {
           lastGet = gets[last];
           c( _c.ajaxList[lastGet.folder][lastGet.name] );
         }
-        return true;
+        return false;
       } else {
         _c.callGet( {
           fo: f, n: n, ps: ps, u: u, t: t, m: m,
           c: function( aItem ) {
-/*console.log( aItem );*/
+//console.log( aItem );
             if( !_c.ajaxList[f] ) {
               _c.ajaxList[f] = {};
             }
