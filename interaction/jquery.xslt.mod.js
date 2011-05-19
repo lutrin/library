@@ -98,7 +98,6 @@
                         else {
                             processor.importStylesheet(xs.responseXML);
                             resultDoc = processor.transformToFragment(xm.responseXML, document);
-console.log( xm.responseXML );
                             target.empty().append(resultDoc);
                             target.html( target.html().replace( /&amp;/g, "&" ) );
                         }

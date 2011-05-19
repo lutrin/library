@@ -291,7 +291,7 @@ var_dump(debug_backtrace(false));
   }
 
   /****************************************************************************/
-  protected static function ensureArray( $array ) {
+  public static function ensureArray( $array ) {
     if( !is_array( $array ) ) {
       return array( $array );
     }
