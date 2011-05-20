@@ -336,6 +336,11 @@ if( !c ) {
   /****************************************************************************/
   setAccountStorage: function( n, v ) {
     _c.callAjax( [ { folder: "procedure", name: "setAccountStorage", params: { "name": n, "value": v } } ], false );
+  },
+
+  /****************************************************************************/
+  removeAccountStorage: function( n ) {
+    _c.callAjax( [ { folder: "procedure", name: "removeAccountStorage", params: { "name": n } } ], false );
   }
 };
 
