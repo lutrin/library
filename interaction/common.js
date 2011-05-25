@@ -198,7 +198,7 @@ var _c = {
   
   /****************************************************************************/
   showAjaxError: function( XMLHttpRequest, textStatus, errorThrown ) {
-    console.log( errorThrown );
+    console.log( [XMLHttpRequest, textStatus, errorThrown] );
     alert( "Erreur" );
   },
 
