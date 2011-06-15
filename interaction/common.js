@@ -156,7 +156,8 @@ var _c = {
       options["url"] = go.u + go.fo + "/controller.php";
       options["data"] = options["data"] || {};
       options["data"]["action"] = go.n;
-      options["contentType"] = "application/json";
+      //options["contentType"] = "application/json";
+      options["contentType"] = "application/x-www-form-urlencoded";
       options["dataType"] = "json";
       if( go.t ) {
         if( go.t == "text" ) {
@@ -195,7 +196,7 @@ var _c = {
 
     //return false;
   },
-  
+
   /****************************************************************************/
   showAjaxError: function( XMLHttpRequest, textStatus, errorThrown ) {
     console.log( [XMLHttpRequest, textStatus, errorThrown] );
@@ -250,6 +251,15 @@ if( !c ) {
         } );
       }
     } );
+  },
+
+  /****************************************************************************/
+  jsonToUrl: function( lst ) {
+    var t = [];
+    for( k in lst ) {
+      t.push( k + "=" + encodeURI( lst[k] ) );
+    }
+    return t.join( "&" );
   },
 
   /****************************************************************************/
