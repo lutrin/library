@@ -287,6 +287,23 @@ if( !c ) {
   },
 
   /****************************************************************************/
+  getHumanSize: function( size, lang ) {
+    lang = lang || "fr";
+    if( this.isNumeric( size ) ) {
+      var decr = 1024,
+          step = 0,
+          prefix = ['Octets', 'Ko', 'Mo', 'Go', 'To', 'Po'];
+      while( ( size / decr ) > 0.9 ) {
+        size /= decr;
+        step++;
+      }
+      return ( Math.round( size * 10 ) / 10 ) + "&nbsp" + prefix[step];
+    } else {
+      return "-";
+    }
+  },
+
+  /****************************************************************************/
   setLocalStorage: function( n, v ) {
     var ov = this.getLocalStorage( n );
     this.overwriteLocalStorage( n, ( ov? this.mergeList( [ov, v] ): v ) );
