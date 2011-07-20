@@ -116,6 +116,7 @@ class DB {
 
   /****************************************************************************/
   public static function insert( $params ) {
+
     # table
     if( !isset( $params["table"] ) ) {
       print "Impossible to execute insert without table name.";
