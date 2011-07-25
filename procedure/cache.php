@@ -10,6 +10,9 @@ class cache {
   /****************************************************************************/
   public static function cleanOldFile() {
     global $CACHEPATH, $CACHE_PERIOD;
+    if( !file_exists( $CACHEPATH ) ) {
+      mkdir( $CACHEPATH, 0777 );
+    }
     if( $handle = opendir( $CACHEPATH ) ) {
       $endPeriod = mktime( 0, 0, 0, date("m"), date("d") + $CACHE_PERIOD, date("Y") );
       while( false !== ( $file = readdir( $handle ) ) ) {
